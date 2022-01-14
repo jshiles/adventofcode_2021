@@ -112,7 +112,7 @@ class Packet(object):
                 else 0
             )
         )
-
+    
 
 class LiteralPacket(Packet):
     """Literal packet class."""
@@ -153,7 +153,7 @@ class LiteralPacket(Packet):
         Returns:None
         """
         bytes: list[str] = [
-            self.data_bits[idx : idx + byte_length]
+            self.data_bits[idx:idx+byte_length]
             for idx in range(0, len(self.data_bits), 5)
             if idx + 5 <= len(self.data_bits)
         ]
@@ -204,14 +204,16 @@ class OperatorPacket(Packet):
         if self.operator_info.length_type_id == 0:
             if utils.bin_to_dec(binary_data[7:22]) > len(self.data_bits):
                 raise InvalidPacketError(
-                    f"Expected data size: {utils.bin_to_dec(binary_data[7:22])}"
-                    f" found {len(self.data_bits)}"
+                    "Expected data size: "
+                    f"{utils.bin_to_dec(binary_data[7:22])} "
+                    f"found {len(self.data_bits)}"
                 )
             self.parse_data_typ0()
         elif self.operator_info.length_type_id == 1:
             if utils.bin_to_dec(binary_data[7:18]) * 11 > len(self.data_bits):
                 raise InvalidPacketError(
-                    f"Expected data size > {utils.bin_to_dec(binary_data[7:18])*11}"
+                    "Expected data size > "
+                    "{utils.bin_to_dec(binary_data[7:18])*11} "
                     f"found {len(self.data_bits)}"
                 )
             self.parse_data_typ1()
@@ -256,7 +258,7 @@ class OperatorPacket(Packet):
                 return
 
             self.sub_packets.append(sub_packet)
-            remaining_bits = remaining_bits[sub_packet.length() :]
+            remaining_bits = remaining_bits[sub_packet.length():]
             packet_data_size = packet_data_size - sub_packet.length()
 
     def parse_data_typ1(self):
@@ -286,7 +288,7 @@ class OperatorPacket(Packet):
 
             self.sub_packets.append(sub_packet)
             valid_bit_counter = valid_bit_counter + sub_packet.length()
-            remaining_bits = remaining_bits[sub_packet.length() :]
+            remaining_bits = remaining_bits[sub_packet.length():]
             sub_packet_counter = sub_packet_counter - 1
 
         self.data_bits = self.data_bits[:valid_bit_counter]
