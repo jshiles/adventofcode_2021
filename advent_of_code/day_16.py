@@ -112,7 +112,7 @@ class Packet(object):
                 else 0
             )
         )
-    
+
 
 class LiteralPacket(Packet):
     """Literal packet class."""
