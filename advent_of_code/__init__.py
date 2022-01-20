@@ -12,3 +12,5 @@ from advent_of_code.day_16 import (
     OperatorPacket,
     OperatorPacketInfo,
 )
+from advent_of_code.day_18 import Pair
+from advent_of_code.day_21 import DeterministicDie, Player
