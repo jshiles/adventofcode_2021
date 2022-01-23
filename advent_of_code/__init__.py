@@ -14,3 +14,4 @@ from advent_of_code.day_16 import (
 )
 from advent_of_code.day_18 import Pair
 from advent_of_code.day_21 import DeterministicDie, Player
+from advent_of_code.day_22 import Cube
