@@ -15,7 +15,7 @@ import re
 
 @dataclass(frozen=True, eq=True, order=True)
 class Element:
-    """ """
+    """Sailfish numbers are made of pairs of elements at a depth."""
 
     value: int
     depth: int
@@ -23,7 +23,15 @@ class Element:
 
 @dataclass(frozen=True, eq=True, order=True)
 class SailFishNumber:
-    """ """
+    """
+    Snailfish numbers aren't like regular numbers. Instead, every
+    snailfish number is a pair - an ordered list of two elements.
+    Each element of the pair can be either a regular number or
+    another pair.
+
+    Class maintains the sailfish number as an flat list of Elements,
+    which are a value and depth.
+    """
 
     elements: List[Element]
 
